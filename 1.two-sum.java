@@ -7,7 +7,8 @@
 // @lc code=start
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        
+     
+        return null;
     }
 }
 // @lc code=end
