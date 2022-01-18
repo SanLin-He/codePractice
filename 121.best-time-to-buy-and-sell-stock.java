@@ -12,11 +12,33 @@ class Solution {
     public int maxProfit(int[] prices) {
         // return way1(prices);
         // return way2(prices);
-        //  return way3(prices);
-         return way4(prices);
+        // return way3(prices);
+        // return way4(prices);
+        return way5(prices);
 
     }
-    //最大自序和
+
+    // 动态规划（手上现金最大值）
+    int way5(int[] prices) {
+        return moneyAtHabd(prices);
+    }
+
+    // 0 buy, 1 sell
+    int moneyAtHabd(int[] prices) {
+        int[][] dp = new int[prices.length][2];
+
+        dp[0][0] = -prices[0];
+        dp[0][1] = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], -prices[i]);
+            dp[i][1] = Math.max(prices[i] + dp[i - 1][0], dp[i - 1][1]);
+        }
+
+        return dp[prices.length-1][1];
+    }
+
+    // 最大子序和
     int way4(int[] prices) {
         if (prices == null || prices.length == 0)
             return 0;
