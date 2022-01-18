@@ -8,10 +8,6 @@
 class Solution {
     public int climbStairs(int n) {
 
-        
-    }
-}
-// @lc code=end
 
         // return way1(n);
         // return way2(n);
