@@ -20,19 +20,21 @@ class Solution {
         map.put('M', 1000);
 
         int ans = 0;
-        int left = 0;
-        int right = 0;
-      for(int i =0; i < s.length()-1; i++){
-        left = map.get(s.charAt(i));
-        right = map.get(s.charAt(i+1));
-          if( left < right){
-            ans = right - left;
+        int lNum = 0;
+        int rNum = 0;
+        int i =0;
+      for( ;i < s.length()-1; i++){
+        lNum = map.get(s.charAt(i));
+        rNum = map.get(s.charAt(i+1));
+          if( lNum < rNum){
+            ans += rNum - lNum;
             i++;
           }else {
-              ans = left+right;
-              i++;
+              ans += lNum;
           }
-
+      }
+      if(i == s.length() -1){
+          ans+= map.get(s.charAt(i));
       }
 
 
