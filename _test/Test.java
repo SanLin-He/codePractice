@@ -26,16 +26,16 @@ class Test {
     }
 
     void dfs(String s, int startIndex, List<String> path) {
-        if (startIndex == s.length()) {
+
             if (path.size() == 4) {
                 ans.add(new ArrayList<>(path));
             }
-            return;
-        }
+
+        
 
         for (int i = startIndex; i < s.length(); i++) {
             String sub = s.substring(startIndex, i + 1);
-            if (isValidIpNum(sub)) {
+            if (isValidIpNum(sub) && path.size()< 4) {
                 path.add(sub + ".");
                 dfs(s, i + 1, path);
                 path.remove(path.size() - 1);

@@ -23,6 +23,7 @@ class Solution {
             for (String ss : p) {
                 sb.append(ss);
             }
+            sb.deleteCharAt(sb.length()-1);
             list.add(sb.toString());
 
         }
@@ -31,16 +32,12 @@ class Solution {
     }
 
     void dfs(String s, int startIndex, List<String> path) {
-        if (startIndex == s.length()) {
-            if (path.size() == 4) {
+        if (startIndex == s.length() && path.size() == 4) {
                 ans.add(new ArrayList<>(path));
             }
-            return;
-        }
-
         for (int i = startIndex; i < s.length(); i++) {
             String sub = s.substring(startIndex, i + 1);
-            if (isValidIpNum(sub)) {
+            if (isValidIpNum(sub) && path.size()< 4) {
                 path.add(sub + ".");
                 dfs(s, i + 1, path);
                 path.remove(path.size() - 1);
@@ -51,10 +48,10 @@ class Solution {
     }
 
     boolean isValidIpNum(String s) {
-        if (s.startsWith("0"))
+        if (s.startsWith("0") && s.length() > 1)
             return false;
         long num = Long.parseLong(s);
-        if (num < 0 || num >= 255)
+        if (num < 0 || num > 255)//妈蛋，这里多写了个等于号。。。。。。导致调试错误，耗时半天多
             return false;
         return true;
     }
